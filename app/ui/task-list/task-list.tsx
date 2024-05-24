@@ -9,7 +9,22 @@ import { TaskSetter } from "@/app/ui/task-list/task-setter/task-setter";
 
 export function TaskList(props: { tasks: TaskItem[] }) {
 
-    const [tasks, setTasks] = useState(props.tasks);
+    const [tasks, setTasks] = useState(props.tasks),
+    [taskStatusFilter, setTaskStatusFilter] = useState<null | boolean>(null),
+    metaFilterButtons = [
+        {
+            text: 'All',
+            activationValue: null
+        },
+        {
+            text: 'Active',
+            activationValue: false
+        },
+        {
+            text: 'Done',
+            activationValue: true
+        }
+    ]
 
     async function deleteTask(id: string) {
         const originalTasks = structuredClone(tasks),
@@ -46,9 +61,37 @@ export function TaskList(props: { tasks: TaskItem[] }) {
 
             </section>
 
+            <section>
+
+                <div className="flex mb-5 flex-col sm:flex-row">
+                    <h2 className="font-extrabold flex-1">
+                        Filter task by:
+                    </h2>
+                    <div className="flex sm:justify-evenly justify-between gap-1">
+                        {
+                            metaFilterButtons.map(btn => (
+                                <button
+                                    key={btn.text}
+                                    className={`min-w-20 flex-1 rounded border border-green-700 px-2 p-1 ${taskStatusFilter === btn.activationValue && 'bg-green-700'}`}
+                                    onClick={() => setTaskStatusFilter(btn.activationValue)}
+                                    >
+                                    {btn.text}
+                                </button>
+                            ))
+                        }
+
+                    </div>
+                </div>
+
+            </section>
+
             <section className={`border-blue-100 rounded`}>
 
-               {tasks.map(task => <TaskItemCard key={task.id} item={task} onDelete={deleteTask} onTaskDone={onTaskDone}/>)}
+               {
+                tasks
+                .filter(task => taskStatusFilter == null || taskStatusFilter === task.isDone)
+                .map(task => <TaskItemCard key={task.id} item={task} onDelete={deleteTask} onTaskDone={onTaskDone}/>)
+                }
 
             </section>
 
