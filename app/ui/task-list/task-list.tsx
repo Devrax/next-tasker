@@ -38,7 +38,7 @@ export function TaskList(props: { tasks: TaskItem[] }) {
         if(error) setTasks(originalTasks);
     }
 
-    return (<article className={`w-full pt-5 px-5`}>
+    return (<article className={`w-full pt-5 px-5 max-w-5xl mx-auto`}>
 
             <section>
 
