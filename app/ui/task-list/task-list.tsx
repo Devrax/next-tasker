@@ -72,7 +72,7 @@ export function TaskList(props: { tasks: TaskItem[] }) {
                             metaFilterButtons.map(btn => (
                                 <button
                                     key={btn.text}
-                                    className={`min-w-20 flex-1 rounded border border-green-700 px-2 p-1 ${taskStatusFilter === btn.activationValue && 'bg-green-700'}`}
+                                    className={`min-w-20 flex-1 rounded border border-green-700 px-2 p-1 font-semibold ${taskStatusFilter === btn.activationValue && 'bg-green-700 font-black'}`}
                                     onClick={() => setTaskStatusFilter(btn.activationValue)}
                                     >
                                     {btn.text}

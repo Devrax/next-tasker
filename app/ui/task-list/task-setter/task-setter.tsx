@@ -34,8 +34,8 @@ export function TaskSetter(props: { onSet: OnSet}) {
                 handleForm(new FormData(e.target as unknown as HTMLFormElement))
             }
         }>
-            <div className={`w-full flex border border-b-0 p-2 rounded-t justify-between items-center`}>
-                <input className={`bg-[rgb(var(--background-start-rgb))] font-extrabold flex-1 active:outline-none focus:outline-none`} ref={inputSetterRef} type="text" placeholder="Set a goal here" name="header" required/>
+            <div className={`w-full flex border border-green-600 border-b-0 p-2 rounded-t justify-between items-center`}>
+                <input className={`bg-[rgb(var(--background-start-rgb))] font-extrabold flex-1 active:outline-none focus:outline-none`} ref={inputSetterRef} type="text" placeholder="Set a goal or task here" name="header" required/>
                 <input className={`h-5 w-5`} type="checkbox" name="isDone" ref={checkboxRef}/>
             </div>
 
